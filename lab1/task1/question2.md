@@ -35,7 +35,39 @@ void display_version(struct version *v)
 
 It should work. Any odd number ends on `1` in binary, e.g. `1011 = 11`. Therefore `1 & 1` will return true and thus `unstable`. Even numbers will calculate to `ß & 1 = 0` therefore `stable`. In `gdb` we can use the `print` command (short `p`). Let's take a look at `v`.
 
-´``gdb
+```gdb
 (gdb) p v
 $2 = (struct version *) 0x7fffffffdf40
 ```
+
+`v` points to the struct `version`. Through dereferencing it we get the values:
+
+```gdb
+(gdb) p *v
+$3 = {major = 3, minor = 5, flags = 0 '\000'}
+```
+
+With `ptyoe /0` we can have a look at the layout.
+
+```gdb
+(gdb) ptype /o v
+type = struct version {
+/*      0      |       2 */    unsigned short major;
+/* XXX  6-byte hole      */
+/*      8      |       8 */    unsigned long minor;
+/*     16      |       1 */    char flags;
+/* XXX  7-byte padding   */
+
+                               /* total size (bytes):   24 */
+                             } *
+```
+
+Let's take a close look at `((char *)v)[sizeof(unsigned short)]`. The `sizeof(unsigned short)` returns 2 (Bytes).
+
+```gdb
+(gdb) p sizeof(unsigned short)
+$4 = 2
+```
+
+At that point we are essentially doing `((char *)v)[2]`. Remember arrays. We are trying to access the Byte (`char`) that is after the first 2 Bytes (first two `char`s). 
+The first 2 Bytes are the major version (here probably `0x00 03`), the rest is padded (in this case with zeroes). This is the reason why our `is_unstable()` function fails
