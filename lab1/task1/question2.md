@@ -47,7 +47,7 @@ $2 = (struct version *) 0x7fffffffdf40
 $3 = {major = 3, minor = 5, flags = 0 '\000'}
 ```
 
-With `ptyoe /0` we can have a look at the layout.
+With `ptype /0` we can have a look at the layout.
 
 ```gdb
 (gdb) ptype /o v
