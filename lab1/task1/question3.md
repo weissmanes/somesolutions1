@@ -9,3 +9,19 @@ int is_unstable(struct version *v)
 ```
 
 Since `v` is a pointer we use the `->` operator to access its member (`minor`).
+
+# Make
+
+You might have to do
+
+```sh
+make clean
+```
+
+before you can use
+
+```sh
+make
+```
+
+again.
