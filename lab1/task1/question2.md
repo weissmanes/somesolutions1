@@ -18,3 +18,19 @@ Quick recall about the ternary operator:
 
 *Source: https://www.geeksforgeeks.org/c/conditional-or-ternary-operator-in-c/*
 
+Looking at the Code only:
+
+```c
+int is_unstable(struct version *v)
+{
+	return 1 & ((char *)v)[sizeof(unsigned short)];
+}
+
+void display_version(struct version *v)
+{
+	printf("%2u.%lu %s", v->major, v->minor,
+	       is_unstable(v) ? "(unstable)" : "(stable)  ");
+}
+```
+
+It should work. Any odd number ends on `1` in binary, e.g. `1011 = 11`. Therefore `1 & 1` will return true and thus `unstable`. Even numbers will calculate to `ß & 1 = 0` therefore `unstable`.
