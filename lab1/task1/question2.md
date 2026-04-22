@@ -14,3 +14,7 @@ We see that `display_version()` calls the functin `is_unstable()` to determine w
 
 Quick recall about the ternary operator:
 
+<img src="./stuff/syntax-of-conditional-or-ternary-operator-in-c.png" width="700" alt="ternary">
+
+*Source: https://www.geeksforgeeks.org/c/conditional-or-ternary-operator-in-c/*
+
