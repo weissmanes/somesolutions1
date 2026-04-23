@@ -33,7 +33,7 @@ void display_version(struct version *v)
 }
 ```
 
-It should work. Any odd number ends on `1` in binary, e.g. `1011 = 11`. Therefore `1 & 1` will return true and thus `unstable`. Even numbers will calculate to `1 & 0 = 0` therefore `stable`. In `gdb` we can use the `print` command (short `p`). Let's take a look at `v`.
+It should work. Any odd number ends on `1` in binary, e.g. `101 = 5`. Therefore `1 & 1` will return true and thus `unstable`. Even numbers will calculate to `1 & 0 = 0` therefore `stable`. In `gdb` we can use the `print` command (short `p`). Let's take a look at `v`.
 
 ```gdb
 (gdb) p v
